@@ -1,0 +1,24 @@
+{
+  "name": "scoop-social",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "check": "next build"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.5",
+    "framer-motion": "^12.23.12",
+    "gsap": "^3.15.1",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.3.5"
+  }
+}

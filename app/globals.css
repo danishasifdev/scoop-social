@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --cream: #f7f1e7;
+  --cherry: #e94f37;
+  --pistachio: #c9db9a;
+  --butter: #f6d66b;
+  --blueberry: #7776d9;
+  --espresso: #28241f;
+  --line: rgba(40, 36, 31, 0.16);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif;
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--espresso);
+    font-family: var(--font-sans), sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  a,
+  input {
+    font: inherit;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    color: inherit;
+    cursor: pointer;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  ::selection {
+    background: var(--butter);
+    color: var(--espresso);
+  }
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--blueberry);
+    outline-offset: 4px;
+  }
+  button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+html {
+  scroll-padding-top: var(--nav-space, 70px);
+}
+
+/* Reveal motion - ported from useReveal.js in the Vue reference. */
+main.is-motion [data-reveal=""] {
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease),
+    filter 0.9s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+main.is-motion [data-reveal=""]:not(.is-in) {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+}
+
+main.is-motion [data-reveal="mask"] {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+  -webkit-mask-image: linear-gradient(#000 40%, transparent 60%);
+  mask-image: linear-gradient(#000 40%, transparent 60%);
+  -webkit-mask-size: 100% 250%;
+  mask-size: 100% 250%;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+  transition:
+    mask-position 1.2s var(--ease),
+    -webkit-mask-position 1.2s var(--ease),
+    transform 1.2s var(--ease);
+}
+main.is-motion [data-reveal="mask"]:not(.is-in) {
+  -webkit-mask-position: 0 100%;
+  mask-position: 0 100%;
+  transform: translateY(0.3em);
+}
+
+main.is-motion [data-reveal="rule"] {
+  border-top-color: transparent;
+  background: linear-gradient(var(--line), var(--line)) 0 0 / 0 1px no-repeat
+    border-box;
+  transition: background-size 1.1s var(--ease) calc(var(--i, 0) * 110ms);
+}
+main.is-motion [data-reveal="rule"].is-in {
+  background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal],
+  [data-reveal] > *,
+  [data-reveal] [data-reveal-item],
+  [data-reveal] .reveal-target {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    transition: none !important;
+  }
+  [data-reveal] .eyebrow.reveal-target::after {
+    transform: scaleX(1) !important;
+    transition: none !important;
+  }
+}
+
+/* Whole-page snap + wheel glide (ported from the Vue scroll reference). */
+html.wheel-snap {
+  scroll-padding-top: var(--nav-space, 70px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.wheel-snap {
+    scroll-snap-type: y mandatory;
+  }
+}
+html.wheel-snap main > section,
+html.wheel-snap .home-page > section {
+  scroll-snap-align: start;
+}
+html.wheel-snap .site-footer {
+  scroll-snap-align: end;
+}
