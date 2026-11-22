@@ -93,7 +93,7 @@ export default function Home() {
             strength={18}
             tilt={5}
           />
-          <div className="absolute bottom-6 left-8.75 right-8.75 z-4 flex justify-between text-[8px] font-extrabold tracking-[.12em] text-white [text-shadow:0_1px_8px_#0004]">
+          <div className="absolute bottom-2 md:bottom-6 left-32 right-32 z-4 flex flex-col lg:flex-row justify-between text-[8px] font-extrabold tracking-[.12em] text-white [text-shadow:0_1px_8px_#0004]">
             <span>01 / THE GOOD STUFF</span>
             <span>MADE FRESH, ALWAYS.</span>
           </div>
@@ -114,7 +114,7 @@ export default function Home() {
               key={i}
               className="whitespace-nowrap pr-4.5 font-display text- font-extrabold tracking-[.04em] max-sm:text-[13px]"
             >
-              SMALL BATCH <b className="px-4.5 text-butter">✳</b> BIG
+              SMALL BATCH <b className="px-4.5 ml-4 text-butter">✳</b> BIG
               PERSONALITY <b className="px-4.5 text-butter">✳</b> NO BORING
               FLAVORS <b className="px-4.5 text-butter">✳</b> GOOD DAYS START
               HERE <b className="px-4.5 text-butter">✳</b>

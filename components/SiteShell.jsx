@@ -15,13 +15,44 @@ const NAV_LINKS = [
 
 export default function SiteShell({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hideHeader, setHideHeader] = useState(false);
   const pathname = usePathname();
   const bagRef = useRef(null);
-  const { count, setOpen, celebration } = useCart();
+  const lastScrollY = useRef(0);
+  const { count, setOpen, celebration, open: cartOpen } = useCart();
 
   useEffect(() => {
     setMenuOpen(false);
+    setHideHeader(false);
+    lastScrollY.current = 0;
   }, [pathname]);
+
+  useEffect(() => {
+    const mobile = window.matchMedia("(max-width: 639px)");
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (!mobile.matches || menuOpen) {
+        setHideHeader(false);
+        lastScrollY.current = y;
+        return;
+      }
+      if (y <= 72) {
+        setHideHeader(false);
+        lastScrollY.current = y;
+        return;
+      }
+      const delta = y - lastScrollY.current;
+      if (Math.abs(delta) < 6) return;
+      setHideHeader(delta > 0);
+      lastScrollY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -35,9 +66,14 @@ export default function SiteShell({ children }) {
     };
   }, [menuOpen]);
 
+  const headerOverlayOpen = menuOpen || cartOpen;
+  const headerHidden = hideHeader && !headerOverlayOpen;
+
   return (
     <>
-      <header className="sticky top-0 z-60 max-w-full bg-cream/95">
+      <header
+        className={`${headerOverlayOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-60 max-w-full bg-cream/95 transition-transform duration-300 ease-cta motion-reduce:transition-none ${headerHidden ? "max-sm:-translate-y-full" : ""}`}
+      >
         <div className="mx-auto flex md:px-6 h-19 max-w-7xl items-center justify-between border-b border-espresso/15 backdrop-blur-xl max-sm:w-[calc(100%-36px)]">
           <Link
             href="/"
@@ -139,7 +175,7 @@ export default function SiteShell({ children }) {
               Made for the very good days.
             </p>
           </div>
-          <div className="grid justify-center gap-4 text-[11px] max-sm:col-start-1 max-sm:row-start-2 max-sm:justify-start">
+          <div className="grid grid-cols-2 sm:grid-cols-1 place-items-center sm:place-items-start justify-center gap-4 text-[11px] max-sm:col-start-1 max-sm:col-span-2 max-sm:row-start-2 max-sm:justify-start">
             <Link
               href="/flavors"
               className="flex items-center gap-1.5 transition-colors hover:text-cherry active:text-cherry max-sm:py-4"
