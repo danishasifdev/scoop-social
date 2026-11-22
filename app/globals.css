@@ -141,19 +141,5 @@ main.is-motion [data-reveal="rule"].is-in {
   }
 }
 
-/* Whole-page snap + wheel glide (ported from the Vue scroll reference). */
-html.wheel-snap {
-  scroll-padding-top: var(--nav-space, 70px);
-}
-@media (prefers-reduced-motion: no-preference) {
-  html.wheel-snap {
-    scroll-snap-type: y mandatory;
-  }
-}
-html.wheel-snap main > section,
-html.wheel-snap .home-page > section {
-  scroll-snap-align: start;
-}
-html.wheel-snap .site-footer {
-  scroll-snap-align: end;
-}
+/* Wheel snapping is driven by WheelSnap.jsx; native mandatory snap would
+   re-snap intermediate glide stops back to the nearest section boundary. */

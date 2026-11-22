@@ -20,6 +20,16 @@ function sectionStops(sections, bar) {
     const content = section.offsetHeight - parseFloat(style.paddingBottom || 0);
     const end = top + content + 24 - view;
 
+    const markers = [...section.querySelectorAll("[data-snap]")]
+      .filter((el) => el.dataset.snap !== "end")
+      .map((el) => el.getBoundingClientRect().top + window.scrollY - bar);
+
+    if (markers.length) {
+      pts.push(...markers);
+      if (end > Math.max(top, ...markers) + 40) pts.push(end);
+      return;
+    }
+
     for (let y = top + view * 0.85; y < end - 40; y += view * 0.85) {
       pts.push(y);
     }
@@ -38,7 +48,6 @@ export default function WheelSnap() {
     ).matches;
     if (!fine) return undefined;
 
-    const html = document.documentElement;
     let glide = null;
     let raf = 0;
     let lastWheel = 0;
@@ -59,7 +68,6 @@ export default function WheelSnap() {
 
     const stop = () => {
       glide = null;
-      html.style.scrollSnapType = "";
     };
 
     const step = (now) => {
@@ -104,8 +112,16 @@ export default function WheelSnap() {
         return;
       }
 
-      const root = document.querySelector("main");
-      if (!root?.contains(event.target)) return;
+      if (!(event.target instanceof Node)) return;
+
+      // The footer and header scroll with the page too. Ignoring them leaves
+      // the wheel unhandled at the bottom, where the footer fills the pointer.
+      const areas = [
+        document.querySelector("main"),
+        document.querySelector(".site-footer"),
+        document.querySelector("header"),
+      ];
+      if (!areas.some((area) => area && area.contains(event.target))) return;
 
       const dir = Math.sign(event.deltaY);
       if (scrollsItself(event.target, dir)) return;
@@ -120,7 +136,7 @@ export default function WheelSnap() {
       if (glide || !fresh) return;
 
       const y = window.scrollY;
-      const pts = stops().filter((p, i, a) => i === 0 || p - a[i - 1] > 100);
+      const pts = stops().filter((p, i, a) => i === 0 || p - a[i - 1] > 60);
       const max = document.documentElement.scrollHeight - window.innerHeight;
       let to =
         dir > 0
@@ -138,18 +154,15 @@ export default function WheelSnap() {
           520 + (260 * Math.abs(to - y)) / window.innerHeight,
         ),
       };
-      html.style.scrollSnapType = "none";
       raf = requestAnimationFrame(step);
     };
 
-    html.classList.add("wheel-snap");
     window.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
       window.removeEventListener("wheel", onWheel);
       cancelAnimationFrame(raf);
       stop();
-      html.classList.remove("wheel-snap");
     };
   }, [pathname]);
 

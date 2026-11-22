@@ -15,7 +15,10 @@ export default function FlavorGrid({ products }) {
 
   return (
     <>
-      <div className="mb-7 flex items-center gap-2 overflow-x-auto border-y border-line py-4 max-sm:gap-2 max-sm:py-3">
+      <div
+        data-snap=""
+        className="mb-7 flex items-center gap-2 overflow-x-auto border-y border-line py-4 max-sm:gap-2 max-sm:py-3"
+      >
         {categories.map((c) => (
           <button
             key={c}
@@ -34,7 +37,7 @@ export default function FlavorGrid({ products }) {
         key={filter}
       >
         {filtered.map((p, i) => (
-          <ProductCard key={p.slug} product={p} index={i} />
+          <ProductCard key={p.slug} product={p} index={i} snap />
         ))}
       </div>
     </>

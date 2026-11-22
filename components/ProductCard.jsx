@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Plus, Check } from "lucide-react";
 import { useCart } from "./cart/CartProvider";
 
-export default function ProductCard({ product, index = 0 }) {
+export default function ProductCard({ product, index = 0, snap = false }) {
   const { add, celebrate } = useCart();
   const [added, setAdded] = useState(false);
   const timer = useRef(null);
@@ -21,6 +21,7 @@ export default function ProductCard({ product, index = 0 }) {
 
   return (
     <article
+      data-snap={snap ? "" : undefined}
       className="group relative min-w-0 animate-cardIn [animation-delay:calc(var(--card-index)*60ms)] transition-transform duration-350 ease-cta hover:-translate-y-1.75 hover:rotate-[-0.6deg]"
       style={{ "--card-color": product.color, "--card-index": index }}
     >
