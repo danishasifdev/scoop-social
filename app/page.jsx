@@ -499,7 +499,7 @@ export default function Home() {
             </ColorText>{" "}
             happily.
           </h2>
-          <p className="m-0 mb-6 text-xs text-[#675a3b]">
+          <p className="m-0 my-6 text-xs text-[#675a3b]">
             See where we're popping up, grab a pint, and bring a friend. The
             good stuff is never far away.
           </p>

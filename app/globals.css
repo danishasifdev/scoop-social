@@ -71,15 +71,13 @@ html {
 /* Reveal motion - ported from useReveal.js in the Vue reference. */
 main.is-motion [data-reveal=""] {
   transition:
-    opacity 0.9s var(--ease),
-    transform 0.9s var(--ease),
-    filter 0.9s var(--ease);
-  transition-delay: calc(var(--i, 0) * 90ms);
+    opacity 0.45s var(--ease),
+    transform 0.45s var(--ease);
+  transition-delay: calc(var(--i, 0) * 45ms);
 }
 main.is-motion [data-reveal=""]:not(.is-in) {
   opacity: 0;
-  transform: translateY(14px);
-  filter: blur(6px);
+  transform: translateY(10px);
 }
 
 main.is-motion [data-reveal="mask"] {
@@ -92,21 +90,21 @@ main.is-motion [data-reveal="mask"] {
   -webkit-mask-position: 0 0;
   mask-position: 0 0;
   transition:
-    mask-position 1.2s var(--ease),
-    -webkit-mask-position 1.2s var(--ease),
-    transform 1.2s var(--ease);
+    mask-position 0.6s var(--ease),
+    -webkit-mask-position 0.6s var(--ease),
+    transform 0.6s var(--ease);
 }
 main.is-motion [data-reveal="mask"]:not(.is-in) {
   -webkit-mask-position: 0 100%;
   mask-position: 0 100%;
-  transform: translateY(0.3em);
+  transform: translateY(0.2em);
 }
 
 main.is-motion [data-reveal="rule"] {
   border-top-color: transparent;
   background: linear-gradient(var(--line), var(--line)) 0 0 / 0 1px no-repeat
     border-box;
-  transition: background-size 1.1s var(--ease) calc(var(--i, 0) * 110ms);
+  transition: background-size 0.5s var(--ease) calc(var(--i, 0) * 45ms);
 }
 main.is-motion [data-reveal="rule"].is-in {
   background-size: 100% 1px;
