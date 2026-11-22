@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const DIRECTIONAL_REVEALS = new Set(["up", "left", "right", "zoom"]);
@@ -11,24 +11,27 @@ const HIDDEN_REVEAL = {
 };
 const REVEAL_BASE = [
   "opacity-0",
-  "blur-[6px]",
-  "transition-[opacity,translate,scale,filter]",
-  "duration-[900ms]",
+  "transition-[opacity,translate,scale]",
+  "duration-[450ms]",
   "ease-[cubic-bezier(0.22,1,0.36,1)]",
-  "[transition-delay:calc(var(--i,0)*90ms)]",
+  "[transition-delay:calc(var(--i,0)*45ms)]",
 ];
 const REVEAL_VISIBLE = [
   "opacity-100",
-  "blur-none",
   "translate-x-0",
   "translate-y-0",
   "scale-100",
 ];
 
+// Apply the hidden state before the browser paints so sections don't briefly
+// appear and then fade back out while React hydrates.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export default function ScrollReveal() {
   const pathname = usePathname();
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const root = document.querySelector("main");
     if (!root) return undefined;
 
@@ -89,11 +92,7 @@ export default function ScrollReveal() {
         el.classList.add("is-in");
 
         if (prepared.has(el)) {
-          el.classList.remove(
-            "opacity-0",
-            "blur-[6px]",
-            HIDDEN_REVEAL[el.dataset.reveal],
-          );
+          el.classList.remove("opacity-0", HIDDEN_REVEAL[el.dataset.reveal]);
           el.classList.add(...REVEAL_VISIBLE);
         }
       };
@@ -104,12 +103,12 @@ export default function ScrollReveal() {
             if (entry.isIntersecting) reveal(entry.target);
           });
         },
-        { rootMargin: "0px 0px -10% 0px" },
+        { rootMargin: "0px 0px 12% 0px" },
       );
 
       targets.forEach((el, i) => {
         if (!el.style.getPropertyValue("--i")) {
-          el.style.setProperty("--i", String(Math.min(i, 5)));
+          el.style.setProperty("--i", String(Math.min(i, 3)));
         }
 
         const variant = el.dataset.reveal;
@@ -119,7 +118,7 @@ export default function ScrollReveal() {
         }
 
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+        if (rect.top < window.innerHeight * 1.12 && rect.bottom > -80) {
           pendingFrames.push(requestAnimationFrame(() => reveal(el)));
         } else {
           observer.observe(el);

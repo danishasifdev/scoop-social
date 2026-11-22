@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
-export default function CountUp({ value, suffix = '', duration = 1200 }) {
+export default function CountUp({ value, suffix = '', duration = 700 }) {
   const ref = useRef(null);
   const [display, setDisplay] = useState(0);
 
