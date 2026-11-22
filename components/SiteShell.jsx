@@ -71,15 +71,15 @@ export default function SiteShell({ children }) {
             })}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center sm:gap-4">
             <button
               ref={bagRef}
-              className={`flex items-center gap-2.5 rounded-full border border-espresso bg-transparent px-4.25 py-3 text-[11px] font-bold transition-[background-color,color,transform,scale] duration-200 hover:bg-espresso hover:text-cream active:scale-95 max-sm:px-3 max-sm:py-3.5 max-sm:text-[10px] ${celebration ? "animate-bagPop" : ""}`}
+              className={`flex items-center gap-2.5 rounded-full sm:border border-espresso bg-transparent px-4.25 py-3 text-[11px] font-bold transition-[background-color,color,transform,scale] duration-200 hover:bg-espresso hover:text-cream active:scale-95 max-sm:p-3 max-sm:text-[10px] ${celebration ? "animate-bagPop" : ""}`}
               onClick={() => setOpen(true)}
               aria-label={`Open shopping bag, ${count} items`}
             >
               <ShoppingBag size={17} />
-              <span>Bag ({count})</span>
+              <span className="hidden md:inline-block">Bag ({count})</span>
             </button>
             <button
               className="hidden place-items-center border-0 bg-transparent p-2.5 transition-transform active:scale-95 max-sm:grid"
