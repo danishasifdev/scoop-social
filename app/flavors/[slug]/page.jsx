@@ -72,7 +72,7 @@ export default function FlavorDetail() {
     <section className={`${WRAP} pb-7.5 pt-9 max-sm:pt-4.5`} data-reveal="up">
       <Link
         href="/flavors"
-        className="inline-flex items-center gap-2.5 pb-7 text-[9px] font-extrabold tracking-[.12em] max-sm:pb-4"
+        className="inline-flex min-h-11 items-center gap-2.5 pb-7 text-[9px] font-extrabold tracking-[.12em] transition-colors hover:text-cherry active:text-cherry max-sm:pb-4"
       >
         <ArrowLeft size={15} /> BACK TO THE LINEUP
       </Link>
@@ -116,7 +116,7 @@ export default function FlavorDetail() {
             {SIZES.map((option) => (
               <button
                 key={option.label}
-                className={`rounded-[3px] border border-line bg-transparent px-2 py-3.25 text-left text-[10px] max-tiny:px-1.5 max-tiny:py-2.75 max-tiny:text-[9px] ${size === option.label ? "border-espresso bg-white/60" : ""}`}
+                className={`rounded-[3px] border border-line bg-transparent px-2 py-3.25 text-left text-[10px] transition-colors active:bg-white/70 max-tiny:px-1.5 max-tiny:py-2.75 max-tiny:text-[9px] ${size === option.label ? "border-espresso bg-white/60" : ""}`}
                 onClick={() => setSize(option.label)}
               >
                 {option.label}
@@ -129,7 +129,7 @@ export default function FlavorDetail() {
           <div className="flex gap-3 max-sm:flex-wrap">
             <div className="flex w-27.5 shrink-0 items-center justify-around rounded-pill border border-line">
               <button
-                className="grid place-items-center border-0 bg-transparent"
+                className="grid h-11 w-11 shrink-0 place-items-center border-0 bg-transparent transition-transform active:scale-90"
                 onClick={() => setQty(Math.max(1, qty - 1))}
                 aria-label="Decrease quantity"
               >
@@ -137,7 +137,7 @@ export default function FlavorDetail() {
               </button>
               <span className="text-[11px]">{qty}</span>
               <button
-                className="grid place-items-center border-0 bg-transparent"
+                className="grid h-11 w-11 shrink-0 place-items-center border-0 bg-transparent transition-transform active:scale-90"
                 onClick={() => setQty(Math.min(12, qty + 1))}
                 aria-label="Increase quantity"
               >
@@ -170,7 +170,7 @@ export default function FlavorDetail() {
       </div>
       <div className="flex justify-between border-t border-line py-4.5 text-[8px] font-extrabold tracking-[.12em] max-sm:text-[6px]">
         <span>GOOD TASTE IS A GROUP PROJECT.</span>
-        <Link href="/flavors" className="flex items-center gap-2">
+        <Link href="/flavors" className="flex min-h-11 items-center gap-2 transition-colors hover:text-cherry active:text-cherry">
           KEEP EXPLORING <ArrowUpRight size={14} />
         </Link>
       </div>

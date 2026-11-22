@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Plus, Check } from "lucide-react";
 import { useCart } from "./cart/CartProvider";
 
-export default function ProductCard({ product, index = 0 }) {
+export default function ProductCard({ product, index = 0, snap = false }) {
   const { add, celebrate } = useCart();
   const [added, setAdded] = useState(false);
   const timer = useRef(null);
@@ -21,12 +21,13 @@ export default function ProductCard({ product, index = 0 }) {
 
   return (
     <article
+      data-snap={snap ? "" : undefined}
       className="group relative min-w-0 animate-cardIn [animation-delay:calc(var(--card-index)*60ms)] transition-transform duration-350 ease-cta hover:-translate-y-1.75 hover:rotate-[-0.6deg]"
       style={{ "--card-color": product.color, "--card-index": index }}
     >
       <Link
         href={`/flavors/${product.slug}`}
-        className="relative block h-82.5 overflow-hidden rounded-[5px] bg-(--card-color) max-tab:h-[clamp(220px,30vw,285px)] max-sm:h-[clamp(170px,55vw,240px)]"
+        className="relative block h-82.5 overflow-hidden rounded-[5px] bg-(--card-color) transition-opacity active:opacity-85 max-tab:h-[clamp(220px,30vw,285px)] max-sm:h-[clamp(170px,55vw,240px)]"
       >
         <span className="absolute left-4 top-4 z-2 rounded-pill bg-cream px-2.5 py-2 text-[8px] font-extrabold tracking-micro max-sm:left-2.25 max-sm:top-2.25 max-sm:p-1.75 max-sm:text-[6px]">
           {product.tag}
@@ -53,7 +54,7 @@ export default function ProductCard({ product, index = 0 }) {
           </p>
         </div>
         <button
-          className={`relative grid h-8.5 w-8.5 shrink-0 place-items-center rounded-full border border-line bg-transparent transition-[transform,translate,scale,rotate,background-color,color,border-color] duration-200 hover:rotate-12 hover:scale-110 hover:bg-espresso hover:text-white max-sm:h-7.5 max-sm:w-7.5 ${added ? 'animate-bagPop border-pistachio bg-pistachio text-espresso after:absolute after:-right-2.5 after:-top-4 after:text-[10px] after:font-extrabold after:text-cherry after:content-["+1"] after:animate-floatUp' : ""}`}
+          className={`relative grid h-8.5 w-8.5 shrink-0 place-items-center rounded-full border border-line bg-transparent transition-[transform,translate,scale,rotate,background-color,color,border-color] duration-200 hover:rotate-12 hover:scale-110 hover:bg-espresso hover:text-white active:scale-95 max-sm:h-11 max-sm:w-11 ${added ? 'animate-bagPop border-pistachio bg-pistachio text-espresso after:absolute after:-right-2.5 after:-top-4 after:text-[10px] after:font-extrabold after:text-cherry after:content-["+1"] after:animate-floatUp' : ""}`}
           aria-label={
             added
               ? `${product.name} added to bag`

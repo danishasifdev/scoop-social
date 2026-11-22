@@ -11,15 +11,13 @@ const EYEBROW =
 
 export default function FlavorsPage() {
   return (
-    <section
-      className={`${WRAP} pb-30 pt-20 max-sm:pb-18.75 max-sm:pt-13.75`}
-    >
+    <section className={`${WRAP} pb-30 pt-20 max-sm:pb-18.75 max-sm:pt-13.75`}>
       <div
         className="relative min-h-87.5 pb-15 max-sm:min-h-78.75 max-sm:pb-10"
         data-reveal="up"
       >
         <span className={EYEBROW}>THE GOOD STUFF / ALL SIX</span>
-        <h1 className="my-6 font-display text-[clamp(80px,10vw,138px)] font-bold leading-[.88] tracking-[-.085em] max-sm:my-6 max-sm:text-[clamp(72px,18vw,105px)]">
+        <h1 className="my-6 font-display text-[clamp(80px,10vw,138px)] font-semibold leading-[.88] tracking-[-.085em] max-sm:my-6 max-sm:text-[clamp(72px,18vw,105px)]">
           Pick your
           <br />
           <em className="font-serif font-normal tracking-[-.065em] text-cherry">

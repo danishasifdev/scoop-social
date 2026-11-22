@@ -12,7 +12,7 @@ const EYEBROW =
   "inline-flex items-center gap-[9px] text-eyebrow font-extrabold tracking-eyebrow";
 const DISPLAY = "font-display font-extrabold tracking-[-.07em]";
 const UNDERLINE_LINK =
-  "inline-flex items-center gap-3 border-b border-espresso pb-2 text-[10px] font-extrabold tracking-[.07em] [&_svg]:transition-transform [&_svg]:duration-250 [&_svg]:ease-cta hover:[&_svg]:translate-x-[3px] hover:[&_svg]:translate-y-[-3px]";
+  "inline-flex min-h-11 items-center gap-3 border-b border-espresso pb-2 text-[10px] font-extrabold tracking-[.07em] [&_svg]:transition-transform [&_svg]:duration-250 [&_svg]:ease-cta hover:[&_svg]:translate-x-[3px] hover:[&_svg]:translate-y-[-3px] active:text-cherry";
 const WRAP =
   "mx-auto w-[min(1280px,calc(100%-96px))] max-tab:w-[calc(100%-48px)] max-mob:w-[calc(100%-36px)] max-tiny:w-[calc(100%-28px)]";
 
@@ -93,7 +93,7 @@ export default function Home() {
             strength={18}
             tilt={5}
           />
-          <div className="absolute bottom-6 left-8.75 right-8.75 z-4 flex justify-between text-[8px] font-extrabold tracking-[.12em] text-white [text-shadow:0_1px_8px_#0004]">
+          <div className="absolute bottom-2 md:bottom-6 left-32 right-32 z-4 flex flex-col lg:flex-row justify-between text-[8px] font-extrabold tracking-[.12em] text-white [text-shadow:0_1px_8px_#0004]">
             <span>01 / THE GOOD STUFF</span>
             <span>MADE FRESH, ALWAYS.</span>
           </div>
@@ -114,7 +114,7 @@ export default function Home() {
               key={i}
               className="whitespace-nowrap pr-4.5 font-display text- font-extrabold tracking-[.04em] max-sm:text-[13px]"
             >
-              SMALL BATCH <b className="px-4.5 text-butter">✳</b> BIG
+              SMALL BATCH <b className="px-4.5 ml-4 text-butter">✳</b> BIG
               PERSONALITY <b className="px-4.5 text-butter">✳</b> NO BORING
               FLAVORS <b className="px-4.5 text-butter">✳</b> GOOD DAYS START
               HERE <b className="px-4.5 text-butter">✳</b>
@@ -269,7 +269,7 @@ export default function Home() {
           </p>
           <Link
             href="/flavors"
-            className="grid h-12 w-12 place-items-center rounded-full border border-espresso transition duration-250 hover:rotate-45 hover:bg-butter [&_svg]:transition-transform [&_svg]:duration-250 [&_svg]:ease-cta hover:[&_svg]:translate-x-0.75 hover:[&_svg]:-translate-y-0.75 max-tab:h-11.5 max-tab:w-11.5 max-sm:col-start-2 max-sm:row-start-1 max-sm:h-10 max-sm:w-10"
+            className="grid h-12 w-12 place-items-center rounded-full border border-espresso transition duration-250 hover:rotate-45 hover:bg-butter [&_svg]:transition-transform [&_svg]:duration-250 [&_svg]:ease-cta hover:[&_svg]:translate-x-0.75 hover:[&_svg]:-translate-y-0.75 max-tab:h-11.5 max-tab:w-11.5 max-sm:col-start-2 max-sm:row-start-1 max-sm:h-11 max-sm:w-11"
             aria-label="View all flavors"
           >
             <ArrowUpRight />
@@ -312,7 +312,7 @@ export default function Home() {
           </span>
           <h2
             data-reveal="mask"
-            className="relative z-1 mb-6.5 mt-12.5 font-display text-[clamp(70px,8vw,108px)] leading-[.82] tracking-[-.09em] max-sm:mb-5.5 max-sm:mt-8.75 max-sm:text-[83px]"
+            className="relative z-1 mb-6.5 mt-12.5 font-display text-[clamp(70px,8vw,108px)] leading-[.82] tracking-[-.09em] max-sm:mb-5.5 max-sm:mt-8.75 max-sm:text-[clamp(70px,21vw,83px)]"
           >
             Summer,
             <br />
@@ -499,7 +499,7 @@ export default function Home() {
             </ColorText>{" "}
             happily.
           </h2>
-          <p className="m-0 mb-6 text-xs text-[#675a3b]">
+          <p className="m-0 my-6 text-xs text-[#675a3b]">
             See where we're popping up, grab a pint, and bring a friend. The
             good stuff is never far away.
           </p>
@@ -594,7 +594,7 @@ export default function Home() {
         </h2>
         <div className="max-w-full">
           <details data-reveal="rule" className="group py-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
+            <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
               What's actually in the ice cream?
             </summary>
             <p className="mb-0 mt-4.5 max-w-[42em] leading-[1.75] opacity-75">
@@ -603,7 +603,7 @@ export default function Home() {
             </p>
           </details>
           <details data-reveal="rule" className="group py-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
+            <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
               Can I find you in person?
             </summary>
             <p className="mb-0 mt-4.5 max-w-[42em] leading-[1.75] opacity-75">
@@ -613,7 +613,7 @@ export default function Home() {
             </p>
           </details>
           <details data-reveal="rule" className="group py-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
+            <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
               How do I choose a flavor?
             </summary>
             <p className="mb-0 mt-4.5 max-w-[42em] leading-[1.75] opacity-75">
@@ -623,7 +623,7 @@ export default function Home() {
             </p>
           </details>
           <details data-reveal="rule" className="group py-6">
-            <summary className="flex cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
+            <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-5 font-display text-2xl font-bold tracking-[-.03em] [list-style:none] after:text-[26px] after:text-cherry after:content-['+'] group-open:after:content-['−'] [&::-webkit-details-marker]:hidden max-sm:text-xl">
               Do you make limited batches?
             </summary>
             <p className="mb-0 mt-4.5 max-w-[42em] leading-[1.75] opacity-75">
