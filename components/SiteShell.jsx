@@ -41,7 +41,7 @@ export default function SiteShell({ children }) {
         <div className="mx-auto flex md:px-6 h-19 max-w-7xl items-center justify-between border-b border-espresso/15 backdrop-blur-xl max-sm:w-[calc(100%-36px)]">
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-display text-lg font-extrabold leading-[.83] tracking-[-.07em]"
+            className="flex items-center gap-2.5 py-1 font-display text-lg font-extrabold leading-[.83] tracking-[-.07em] transition-opacity active:opacity-70 max-sm:py-2.5"
           >
             <span className="rotate-[-14deg] text-[35px] leading-none text-cherry">
               ✳
@@ -74,7 +74,7 @@ export default function SiteShell({ children }) {
           <div className="flex items-center gap-4">
             <button
               ref={bagRef}
-              className={`flex items-center gap-2.5 rounded-full border border-espresso bg-transparent px-4.25 py-3 text-[11px] font-bold transition-colors hover:bg-espresso hover:text-cream max-sm:px-3 max-sm:py-2.5 max-sm:text-[10px] ${celebration ? "animate-bagPop" : ""}`}
+              className={`flex items-center gap-2.5 rounded-full border border-espresso bg-transparent px-4.25 py-3 text-[11px] font-bold transition-[background-color,color,transform,scale] duration-200 hover:bg-espresso hover:text-cream active:scale-95 max-sm:px-3 max-sm:py-3.5 max-sm:text-[10px] ${celebration ? "animate-bagPop" : ""}`}
               onClick={() => setOpen(true)}
               aria-label={`Open shopping bag, ${count} items`}
             >
@@ -82,7 +82,7 @@ export default function SiteShell({ children }) {
               <span>Bag ({count})</span>
             </button>
             <button
-              className="hidden place-items-center border-0 bg-transparent p-2 max-sm:grid"
+              className="hidden place-items-center border-0 bg-transparent p-2.5 transition-transform active:scale-95 max-sm:grid"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
@@ -108,7 +108,7 @@ export default function SiteShell({ children }) {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className={`flex items-end justify-between gap-3.5 border-b border-cream/15 py-3.5 font-display text-[clamp(46px,12vw,72px)] font-extrabold leading-[.94] tracking-[-.07em] ${index === 0 ? "text-cherry" : index === 1 ? "text-butter" : "text-pistachio"} ${pathname === link.href ? "underline decoration-[3px] underline-offset-[6px]" : ""}`}
+              className={`flex items-end justify-between gap-3.5 border-b border-cream/15 py-3.5 font-display text-[clamp(46px,12vw,72px)] font-extrabold leading-[.94] tracking-[-.07em] transition-opacity active:opacity-70 ${index === 0 ? "text-cherry" : index === 1 ? "text-butter" : "text-pistachio"} ${pathname === link.href ? "underline decoration-[3px] underline-offset-[6px]" : ""}`}
             >
               {link.label}{" "}
               <ArrowUpRight
@@ -142,25 +142,25 @@ export default function SiteShell({ children }) {
           <div className="grid justify-center gap-4 text-[11px] max-sm:col-start-1 max-sm:row-start-2 max-sm:justify-start">
             <Link
               href="/flavors"
-              className="flex items-center gap-1.5 transition-colors hover:text-cherry"
+              className="flex items-center gap-1.5 transition-colors hover:text-cherry active:text-cherry max-sm:py-4"
             >
               All flavors
             </Link>
             <Link
               href="/our-story"
-              className="flex items-center gap-1.5 transition-colors hover:text-cherry"
+              className="flex items-center gap-1.5 transition-colors hover:text-cherry active:text-cherry max-sm:py-4"
             >
               Our story
             </Link>
             <Link
               href="/find-us"
-              className="flex items-center gap-1.5 transition-colors hover:text-cherry"
+              className="flex items-center gap-1.5 transition-colors hover:text-cherry active:text-cherry max-sm:py-4"
             >
               Find a scoop
             </Link>
             <Link
               href="/flavors"
-              className="flex items-center gap-1.5 transition-colors hover:text-cherry"
+              className="flex items-center gap-1.5 transition-colors hover:text-cherry active:text-cherry max-sm:py-4"
             >
               Build your bag <ArrowUpRight size={13} />
             </Link>

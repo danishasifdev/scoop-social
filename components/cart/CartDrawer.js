@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, X, ShoppingBag, ArrowUpRight } from "lucide-react";
 import { useCart } from "./CartProvider";
@@ -6,6 +7,15 @@ import LiquidButton from "../LiquidButton";
 
 export default function CartDrawer() {
   const { items, update, remove, total, open, setOpen } = useCart();
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -36,7 +46,7 @@ export default function CartDrawer() {
                 </h2>
               </div>
               <button
-                className="grid h-10 w-10 place-items-center rounded-full border border-line bg-transparent"
+                className="grid h-11 w-11 place-items-center rounded-full border border-line bg-transparent transition-transform active:scale-95"
                 onClick={() => setOpen(false)}
                 aria-label="Close bag"
               >
@@ -65,7 +75,7 @@ export default function CartDrawer() {
                         </span>
                         <div className="flex items-center gap-3 text-[11px]">
                           <button
-                            className="grid h-6 w-6 place-items-center rounded-full border border-line bg-transparent"
+                            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-transparent transition-transform active:scale-90"
                             onClick={() => update(item.key, -1)}
                             aria-label={`Remove one ${item.name}`}
                           >
@@ -73,7 +83,7 @@ export default function CartDrawer() {
                           </button>
                           <span>{item.qty}</span>
                           <button
-                            className="grid h-6 w-6 place-items-center rounded-full border border-line bg-transparent"
+                            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-transparent transition-transform active:scale-90"
                             onClick={() => update(item.key, 1)}
                             aria-label={`Add one ${item.name}`}
                           >
@@ -82,7 +92,7 @@ export default function CartDrawer() {
                         </div>
                       </div>
                       <button
-                        className="border-0 bg-none text-[9px] underline text-[#82796e] max-sm:text-[8px]"
+                        className="min-h-10 border-0 bg-none px-1 text-[9px] underline text-[#82796e] transition-colors active:text-cherry max-sm:text-[8px]"
                         onClick={() => remove(item.key)}
                       >
                         Remove

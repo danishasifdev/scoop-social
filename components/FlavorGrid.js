@@ -19,7 +19,7 @@ export default function FlavorGrid({ products }) {
         {categories.map((c) => (
           <button
             key={c}
-            className={`shrink-0 rounded-pill border border-line bg-transparent px-4 py-2.5 text-[10px] transition duration-200 hover:-rotate-3 hover:border-espresso hover:bg-espresso hover:text-cream max-sm:px-3 max-sm:py-2 max-sm:text-[9px] ${filter === c ? "border-espresso bg-yellow-500 text-black" : ""}`}
+            className={`shrink-0 rounded-pill border border-line bg-transparent px-4 py-2.5 text-[10px] transition duration-200 hover:-rotate-3 hover:border-espresso hover:bg-espresso hover:text-cream active:scale-95 max-sm:min-h-11 max-sm:px-4 max-sm:text-[9px] ${filter === c ? "border-espresso bg-espresso text-cream" : ""}`}
             onClick={() => setFilter(c)}
           >
             {c}

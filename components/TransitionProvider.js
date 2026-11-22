@@ -98,7 +98,7 @@ export default function TransitionProvider({ children }) {
             aria-hidden="true"
             initial={false}
           >
-            <div className="absolute inset-0 grid grid-cols-9 grid-rows-1 max-sm:[&>*:nth-child(n+7)]:hidden">
+            <div className="absolute inset-0 grid grid-cols-6 grid-rows-1 sm:grid-cols-9 max-sm:[&>*:nth-child(n+7)]:hidden">
               {Array.from({ length: 9 }).map((_, i) => (
                 <motion.div
                   key={i}

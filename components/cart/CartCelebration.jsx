@@ -92,7 +92,7 @@ export default function CartCelebration({ bagRef }) {
             </span>
             <button
               type="button"
-              className="rounded-pill border-0 bg-cream px-3 py-2 text-[9px] font-extrabold tracking-[.04em] text-espresso transition-colors hover:bg-butter max-sm:px-2.5 max-sm:py-2"
+              className="min-h-10 rounded-pill border-0 bg-cream px-3 py-2 text-[9px] font-extrabold tracking-[.04em] text-espresso transition-colors hover:bg-butter active:bg-butter max-sm:min-h-11 max-sm:px-3"
               onClick={() => setOpen(true)}
             >
               View bag
